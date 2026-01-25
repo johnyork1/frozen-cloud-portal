@@ -18,8 +18,12 @@ catalog = load_catalog()
 # Page Config
 st.set_page_config(page_title="Frozen Cloud Music", page_icon="❄️", layout="wide")
 
-# Title
-st.title("❄️ Frozen Cloud Music")
+# Logo and Title
+col_logo, col_title = st.columns([0.5, 5])
+with col_logo:
+    st.image(str(Path(__file__).parent / "logo.gif"), width=80)
+with col_title:
+    st.markdown("<h1 style='margin-top: 10px;'>Frozen Cloud Music</h1>", unsafe_allow_html=True)
 st.caption("Publishing Catalog Portal")
 
 # Sidebar Navigation
