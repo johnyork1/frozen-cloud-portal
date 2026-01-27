@@ -7,10 +7,14 @@ from pathlib import Path
 DATA_DIR = Path(__file__).parent / "data"
 
 def load_catalog():
+    """Load catalog and filter to FROZEN_CLOUD songs only."""
     catalog_path = DATA_DIR / "catalog.json"
     if catalog_path.exists():
         with open(catalog_path, 'r') as f:
-            return json.load(f)
+            full_catalog = json.load(f)
+            # Filter to only Frozen Cloud songs
+            filtered_songs = [s for s in full_catalog.get("songs", []) if s.get("act_id") == "FROZEN_CLOUD"]
+            return {"songs": filtered_songs}
     return {"songs": []}
 
 catalog = load_catalog()
